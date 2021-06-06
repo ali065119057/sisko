@@ -95,6 +95,18 @@ if (empty($_SESSION['admin'])) {
       </div>
       </div>
       </div>
+      
+      <!-- ikon dan link Kendaraan -->
+      <div class="col">
+        <a href="?page=brw">
+          <div class="card text-white bg-info mb-3 h-100">
+            <div class="card-body">
+              <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">report</span></h1>
+        </a>
+        <h3 class="text-center"> Kendaraan</h3>
+      </div>
+      </div>
+      </div>
     <?php
         }
     ?>
