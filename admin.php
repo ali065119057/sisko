@@ -30,10 +30,10 @@ if (empty($_SESSION['admin'])) {
         $page = $_REQUEST['page'];
         switch ($page) {
           case 'brw':
-            include "peminjaman.php";
+            include "tambah-siswa.php";
             break;
           case 'rtn':
-            include "pengembalian.php";
+            include "edit-siswa.php";
             break;
         }
       } else {
