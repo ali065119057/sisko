@@ -30,10 +30,22 @@ if (empty($_SESSION['admin'])) {
         $page = $_REQUEST['page'];
         switch ($page) {
           case 'brw':
-            include "tambah-siswa.php";
+            include "pinjam.php";
             break;
           case 'rtn':
             include "edit-siswa.php";
+            break;
+          case 'his':
+            include "history.php";
+            break;
+          case 'rpt':
+            include "laporan.php";
+            break;
+          case 'vch':
+            include "kendaraan.php";
+            break;
+          case 'rtn':
+            include "pegawai.php";
             break;
         }
       } else {
@@ -73,7 +85,7 @@ if (empty($_SESSION['admin'])) {
     </div>
     <!-- ikon dan link Riwayat -->
     <div class="col">
-      <a href="?page=brw">
+      <a href="?page=his">
         <div class="card text-dark bg-white mb-3 h-100">
           <div class="card-body">
             <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">history</span></h1>
@@ -83,7 +95,8 @@ if (empty($_SESSION['admin'])) {
     </div>
     </div>
     <?php
-        if ($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2) { ?>
+        if ($_SESSION['admin'] == 1 || 2) { ?>
+      <!-- if ($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2) { ?> -->
       <!-- ikon dan link Laporan -->
       <div class="col">
         <a href="?page=rpt">
@@ -95,7 +108,7 @@ if (empty($_SESSION['admin'])) {
       </div>
       </div>
       </div>
-      
+
       <!-- ikon dan link Kendaraan -->
       <div class="col">
         <a href="?page=vch">
@@ -107,7 +120,7 @@ if (empty($_SESSION['admin'])) {
       </div>
       </div>
       </div>
-      
+
       <!-- ikon dan link Pegawai -->
       <div class="col">
         <a href="?page=epl">
@@ -131,7 +144,7 @@ if (empty($_SESSION['admin'])) {
         <div class="col">
           <div class="card">
             <div class="card-header text-center">
-              <h6> HISTORY PERJALANAN </h6>
+              <h6> Tabel Riwayat Perjalanan</h6>
               <table class="table table-succes table-stripped table-bordered responsive-table" id="myTable">
                 <thead>
                   <tr>
@@ -149,10 +162,15 @@ if (empty($_SESSION['admin'])) {
                 <tbody>
                   <?php
                   include 'koneksi.php';
-                  // include 'functions.php';
-                  //$config = conn($db_host, $db_username, $db_password, $db_database);
                   $no = 1;
-                  $query = mysqli_query($conn, "SELECT * FROM perjalanan");
+                  echo $_SESSION['admin'];
+                  if ($_SESSION['admin'] <= 2) {
+                    $sql = "SELECT * FROM perjalanan";
+                  } else {
+                    $sql = "SELECT * FROM perjalanan WHERE id_user=$_SESSION[id_user]";
+                  };
+
+                  $query = mysqli_query($conn, $sql);
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
 
@@ -170,13 +188,9 @@ if (empty($_SESSION['admin'])) {
                       <td><?php echo $row['alamat_tujuan'] ?></td>
                       <td><?php echo $row['km_awal'] ?></td>
                       <td><?php echo $row['km_akhir'] ?></td>
-                      <!-- <td class="text-center">
-                            <a href="edit-siswa.php?id=<?php echo $row['no'] ?>" class="btn btn-sm btn-primary">EDIT</a>
-                            <a href="hapus-siswa.php?id=<?php echo $row['no'] ?>" class="btn btn-sm btn-danger">HAPUS</a>
-                          </td> -->
                       </tr>
-                    <?php }
-                    ?>
+
+                    <?php } ?>
                 </tbody>
               </table>
             </div>
