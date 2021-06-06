@@ -1,10 +1,10 @@
 <?php  ?>
 <html>
-  <!-- Head START -->
+<!-- Head START -->
 
 <head>
 
-    <title>SIsKO 1.0.5</title>
+    <title>SIsKO 1.0.10</title>
 
     <!-- Meta START -->
     <meta charset="utf-8" />
@@ -148,11 +148,10 @@
         .input-field label.active {
             font-size: 1rem;
         }
-
-        
     </style>
     <!-- Global style END 
 
 </head>
      Head END -->
+
 </html>

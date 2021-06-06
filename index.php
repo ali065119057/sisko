@@ -14,7 +14,7 @@ require_once 'koneksi.php';
 ?>
 <!--
     Name        : Sistem Informasi Kendaraan Operasional
-    Version     : v1.0.5
+    Version     : v1.0.10
     Description : Tugas Matakuliah IMK dan DBL, Universitas Pakuan 2021
     Date        : 2021
     Modifier    : Kelompok3
@@ -23,9 +23,9 @@ require_once 'koneksi.php';
 <!doctype html>
 <html lang="en">
 
-<!-- <?php include "head.php" ?> -->
+<?php include "head.php" ?>
 
-    <!-- Body START -->
+<!-- Body START -->
 
 <body class="blue-grey lighten-3 bg">
 
@@ -51,6 +51,7 @@ require_once 'koneksi.php';
                                 <div class="batas"></div>
                             </div>
                         </div>
+
                         <?php
                         if (isset($_REQUEST['submit'])) {
 
