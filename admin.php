@@ -86,7 +86,7 @@ if (empty($_SESSION['admin'])) {
         if ($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2) { ?>
       <!-- ikon dan link Laporan -->
       <div class="col">
-        <a href="?page=brw">
+        <a href="?page=rpt">
           <div class="card text-white bg-info mb-3 h-100">
             <div class="card-body">
               <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">report</span></h1>
@@ -98,12 +98,24 @@ if (empty($_SESSION['admin'])) {
       
       <!-- ikon dan link Kendaraan -->
       <div class="col">
-        <a href="?page=brw">
+        <a href="?page=vch">
           <div class="card text-white bg-info mb-3 h-100">
             <div class="card-body">
-              <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">report</span></h1>
+              <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">airport_shuttle</span></h1>
         </a>
         <h3 class="text-center"> Kendaraan</h3>
+      </div>
+      </div>
+      </div>
+      
+      <!-- ikon dan link Pegawai -->
+      <div class="col">
+        <a href="?page=epl">
+          <div class="card text-white bg-info mb-3 h-100">
+            <div class="card-body">
+              <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">manage_accounts</span></h1>
+        </a>
+        <h3 class="text-center"> Pegawai </h3>
       </div>
       </div>
       </div>
