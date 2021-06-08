@@ -9,8 +9,6 @@ if (isset($_SESSION['admin'])) {
 }
 
 require_once 'koneksi.php';
-//require_once 'functions.php';
-//$config = conn($db_host, $db_username, $db_password, $db_database);
 ?>
 <!--
     Name        : Sistem Informasi Kendaraan Operasional

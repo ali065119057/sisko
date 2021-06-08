@@ -13,31 +13,31 @@ if (empty($_SESSION['admin'])) {
   <?php include 'navbar.php';
   //include 'head.php';
   ?>
-  
- <style type="text/css">
-        body {
-            background: #fff;
-        }
 
-        .bg::before {
-            content: '';
-            background-image: url('./asset/img/background.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            position: absolute;
-            z-index: -1;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            opacity: 0.15;
-            filter: alpha(opacity=15);
-            height: 100%;
-            width: 100%;
-            size: auto;
-        }
-        </style>
+  <style type="text/css">
+    body {
+      background: #fff;
+    }
+
+    .bg::before {
+      content: '';
+      background-image: url('./asset/img/background.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.15;
+      filter: alpha(opacity=15);
+      height: 100%;
+      width: 100%;
+      size: auto;
+    }
+  </style>
 
   <head>
     <meta charset="utf-8">
@@ -58,32 +58,21 @@ if (empty($_SESSION['admin'])) {
           case 'brw':
             include "pinjam.php";
             break;
-          case 'rtn':
-            include "edit-siswa.php";
-            break;
-          case 'his':
-            include "history.php";
-            break;
-          case 'rpt':
-            include "laporan.php";
-            break;
           case 'vch':
             include "kendaraan.php";
             break;
           case 'rtn':
             include "pegawai.php";
             break;
+          case 'rprt':
+            include "lapor.php";
+            break;
         }
       } else {
       ?>
-        <!-- Baris Awal               -->
-        <!-- Pesan pembuka -->
-        <?php include "welcome_msg.php" ?>
-        <!-- <div class="row row-cols-1 justify-content-md-center"></div> -->
 
+        <?php include "welcome_msg.php" ?>
         <div class="row row-cols-12 justify-content-md-center g-4">
-          <!-- <div class="card-body"> -->
-          <!-- <div class="row justify-content-md-center"> -->
           <!-- ikon dan link pinjam -->
           <div class="col">
             <div class="card text-dark bg-white h-85">
@@ -101,7 +90,7 @@ if (empty($_SESSION['admin'])) {
             <div class="col">
               <div class="card text-dark bg-white mb-3 h-85">
                 <div class="card-body">
-                  <a href="?page=brw">
+                  <a href="?page=vhc">
                     <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">assignment</span></h1>
                   </a>
                 </div>
@@ -112,23 +101,25 @@ if (empty($_SESSION['admin'])) {
             <div class="col">
               <div class="card text-dark bg-white mb-3 h-85">
                 <div class="card-body">
-                  <a href="?page=his">
+                  <a href="?page=drv">
                     <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">history</span></h1>
                   </a>
                 </div>
                 <h6 class="text-center"> Pengemudi </h6>
               </div>
             </div>
+            <!-- ikon dan link Riwayat -->
             <div class="col">
               <div class="card text-dark bg-white mb-3 h-85">
                 <div class="card-body">
-                  <a href="?page=rpt">
+                  <a href="?page=rprt">
                     <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">report</span></h1>
                   </a>
                 </div>
                 <h6 class="text-center"> Laporan </h6>
               </div>
             </div>
+
           <?php
           }
           ?>
