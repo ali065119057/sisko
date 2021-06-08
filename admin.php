@@ -10,8 +10,34 @@ if (empty($_SESSION['admin'])) {
 ?>
   <!doctype html>
   <html lang="en">
-  <?php include 'navbar.php' ?>
+  <?php include 'navbar.php';
+  //include 'head.php';
+  ?>
+  
+ <style type="text/css">
+        body {
+            background: #fff;
+        }
 
+        .bg::before {
+            content: '';
+            background-image: url('./asset/img/background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.15;
+            filter: alpha(opacity=15);
+            height: 100%;
+            width: 100%;
+            size: auto;
+        }
+        </style>
 
   <head>
     <meta charset="utf-8">
@@ -22,7 +48,7 @@ if (empty($_SESSION['admin'])) {
     <title>SIsKO 1.0.10</title>
   </head>
 
-  <body>
+  <body class="blue-grey lighten-3 bg">
 
     <div class="container" style="margin-top: 80px">
       <?php
@@ -60,159 +86,181 @@ if (empty($_SESSION['admin'])) {
           <!-- <div class="row justify-content-md-center"> -->
           <!-- ikon dan link pinjam -->
           <div class="col">
-            <div class="card text-dark bg-white h-100">
+            <div class="card text-dark bg-white h-85">
               <div class="card-body">
                 <a href="?page=brw">
                   <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">drive_eta</span></h1>
                 </a>
               </div>
-              <h3 class="text-center"> Pinjam Kendaraan </h3>
-            </div>
-          </div>
-          <!-- ikon dan link kembali -->
-          <div class="col">
-            <div class="card text-dark bg-white mb-3 h-100">
-              <div class="card-body">
-                <a href="?page=brw">
-                  <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">assignment</span></h1>
-                </a>
-              </div>
-              <h3 class="text-center"> Pengembalian Kendaraan </h3>
-            </div>
-          </div>
-          <!-- ikon dan link Riwayat -->
-          <div class="col">
-            <div class="card text-dark bg-white mb-3 h-100">
-              <div class="card-body">
-                <a href="?page=his">
-                  <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">history</span></h1>
-                </a>
-              </div>
-              <h3 class="text-center"> Riwayat Penggunaan </h3>
+              <h6 class="text-center"> Pinjam Kendaraan </h6>
             </div>
           </div>
           <?php
           if ($_SESSION['admin'] <= 2) { ?>
-            <!-- if ($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2) { ?> -->
-            <!-- ikon dan link Laporan -->
+            <!-- ikon dan link kembali -->
             <div class="col">
-              <div class="card text-dark bg-white mb-3 h-100">
+              <div class="card text-dark bg-white mb-3 h-85">
+                <div class="card-body">
+                  <a href="?page=brw">
+                    <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">assignment</span></h1>
+                  </a>
+                </div>
+                <h6 class="text-center"> Kendaraan </h6>
+              </div>
+            </div>
+            <!-- ikon dan link Riwayat -->
+            <div class="col">
+              <div class="card text-dark bg-white mb-3 h-85">
+                <div class="card-body">
+                  <a href="?page=his">
+                    <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">history</span></h1>
+                  </a>
+                </div>
+                <h6 class="text-center"> Pengemudi </h6>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card text-dark bg-white mb-3 h-85">
                 <div class="card-body">
                   <a href="?page=rpt">
                     <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">report</span></h1>
                   </a>
                 </div>
-                <h3 class="text-center"> Laporan </h3>
+                <h6 class="text-center"> Laporan </h6>
               </div>
             </div>
+          <?php
+          }
+          ?>
+        </div>
 
-            <!-- ikon dan link Kendaraan -->
-            <div class="col">
-              <div class="card text-dark bg-white mb-3 h-100">
-                <div class="card-body">
-                  <a href="?page=vch">
-                    <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">airport_shuttle</span></h1>
-                  </a>
-                </div>
-                <h3 class="text-center"> Kendaraan</h3>
-              </div>
-            </div>
+        <!-- </div> -->
+        <!-- </div> -->
+        <hr size="4px">
+        <div class="row">
+          <!-- <div class="card "> -->
+          <div class="card-header text-center">
+            <!-- <div class="card-body"> -->
+            <!-- <div class="col"> -->
+            <h6> Tabel Riwayat Perjalanan</h6>
+            <div class="table-responsive">
+              <table class="table table-succes table-stripped table-bordered responsive-table" id="myTable">
+                <thead>
+                  <tr>
+                    <th scope="col" onclick="sortTable(0)">NO.</th>
+                    <th scope="col" onclick="sortTable(1)">TANGGAL</th>
+                    <th scope="col" onclick="sortTable(2)">PENGGUNA</th>
+                    <th scope="col" onclick="sortTable(3)">PENGEMUDI</th>
+                    <th scope="col" onclick="sortTable(4)">JUMLAH PENUMPANG</th>
+                    <th scope="col" onclick="sortTable(5)">TUJUAN</th>
+                    <th scope="col" onclick="sortTable(6)">KM AWAL</th>
+                    <th scope="col" onclick="sortTable(7)">KM AKHIR</th>
+                    <th scope="col" onclick="sortTable(8)">AKSI</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  include 'koneksi.php';
+                  $no = 1;
+                  // echo $_SESSION['admin'];
+                  if ($_SESSION['admin'] <= 2) {
+                    $sql = "SELECT * FROM perjalanan \n"
 
-            <!-- ikon dan link Pegawai -->
-            <div class="col">
-              <div class="card text-dark bg-white mb-3 h-100">
-                <div class="card-body">
-                  <a href="?page=epl">
-                    <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">manage_accounts</span></h1>
-                  </a>
-                </div>
-                <h3 class="text-center"> Pegawai </h3>
-              </div>
+                      . "JOIN tbl_user ON perjalanan.id_user=tbl_user.id_user \n"
+
+                      . "JOIN pengemudi ON perjalanan.id_pengemudi = pengemudi.id_pengemudi";
+                  } else {
+                    $sql = "SELECT * FROM perjalanan JOIN tbl_user USING (id_user) JOIN pengemudi USING (id_pengemudi) WHERE id_user =$_SESSION[id_user]";
+
+                    // $sql = "SELECT * FROM perjalanan WHERE id_user=$_SESSION[id_user]";
+                  };
+                  $query = mysqli_query($conn, $sql);
+                  while ($row = mysqli_fetch_array($query)) {
+                  ?>
+
+                    <?php if ($row['km_awal'] > $row['km_akhir']) { ?>
+                      <tr class="table-danger">
+                      <?php } else { ?>
+                      <tr class="table-white">
+                      <?php } ?>
+
+                      <td><?php echo $no++ ?></td>
+                      <td><?php echo $row['tgl_berangkat'] ?></td>
+                      <td><?php echo $row['nama'] ?></td>
+                      <td><?php echo $row['nama_pengemudi'] ?></td>
+                      <td><?php echo $row['jml_penumpang'] ?></td>
+                      <td><?php echo $row['alamat_tujuan'] ?></td>
+                      <td><?php echo $row['km_awal'] ?></td>
+                      <td><?php echo $row['km_akhir'] ?></td>
+                      <td class="text-center">
+                        <?php if ($row['km_awal'] > $row['km_akhir']) { ?>
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <span class="material-icons two-tone">
+                              assignment_return
+                            </span><br>
+                            Pengembalian
+                          </button>
+                        <?php } ?>
+                        <?php if ($_SESSION['admin'] <= 2) { ?>
+                          <button active type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <span class="material-icons two-tone">
+                              check_circle
+                            </span><br>
+                            Persetujuan
+                          </button>
+
+                          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <span class="material-icons two-tone">
+                              assignment_return
+                            </span><br>
+                            Text
+                          </button>
+                        <?php } ?>
+
+                      </td>
+                      </tr>
+                    <?php } ?>
+                </tbody>
+              </table>
             </div>
             <!-- </div> -->
-        </div>
-      <?php
-          }
-      ?>
-
-      <!-- </div> -->
-      <!-- </div> -->
-      <hr size="4px">
-      <div class="row">
-        <!-- <div class="card "> -->
-        <div class="card-header text-center">
-          <!-- <div class="card-body"> -->
-          <!-- <div class="col"> -->
-          <h6> Tabel Riwayat Perjalanan</h6>
-          <div class="table-responsive">
-            <table class="table table-succes table-stripped table-bordered responsive-table" id="myTable">
-              <thead>
-                <tr>
-                  <th scope="col" onclick="sortTable(0)">NO.</th>
-                  <th scope="col" onclick="sortTable(1)">TANGGAL</th>
-                  <th scope="col" onclick="sortTable(2)">PENGGUNA</th>
-                  <th scope="col" onclick="sortTable(3)">PENGEMUDI</th>
-                  <th scope="col" onclick="sortTable(4)">JUMLAH PENUMPANG</th>
-                  <th scope="col" onclick="sortTable(5)">TUJUAN</th>
-                  <th scope="col" onclick="sortTable(6)">KM AWAL</th>
-                  <th scope="col" onclick="sortTable(7)">KM AKHIR</th>
-                  <th scope="col" onclick="sortTable(8)">AKSI</th>
-                  <!-- <th scope="col">AKSI</th> -->
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                include 'koneksi.php';
-                $no = 1;
-                // echo $_SESSION['admin'];
-                if ($_SESSION['admin'] <= 2) {
-                  $sql = "SELECT * FROM perjalanan \n"
-
-                    . "JOIN tbl_user ON perjalanan.id_user=tbl_user.id_user \n"
-
-                    . "JOIN pengemudi ON perjalanan.id_pengemudi = pengemudi.id_pengemudi";
-                } else {
-                  $sql = "SELECT * FROM perjalanan JOIN tbl_user USING (id_user) JOIN pengemudi USING (id_pengemudi) WHERE id_user =$_SESSION[id_user]";
-
-                  // $sql = "SELECT * FROM perjalanan WHERE id_user=$_SESSION[id_user]";
-                };
-                $query = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($query)) {
-                ?>
-
-                  <?php if ($row['km_awal'] > $row['km_akhir']) { ?>
-                    <tr class="table-danger">
-                    <?php } else { ?>
-                    <tr class="table-white">
-                    <?php } ?>
-
-                    <td><?php echo $no++ ?></td>
-                    <td><?php echo $row['tgl_berangkat'] ?></td>
-                    <td><?php echo $row['nama'] ?></td>
-                    <td><?php echo $row['nama_pengemudi'] ?></td>
-                    <td><?php echo $row['jml_penumpang'] ?></td>
-                    <td><?php echo $row['alamat_tujuan'] ?></td>
-                    <td><?php echo $row['km_awal'] ?></td>
-                    <td><?php echo $row['km_akhir'] ?></td>
-                    <td class="text-center">
-
-                      <!-- <a href="edit-siswa.php?id=<?php echo $row['no'] ?>" class="btn btn-sm btn-primary">EDIT</a> -->
-                      <!-- <a href="hapus-siswa.php?id=<?php echo $row['no'] ?>" class="btn btn-sm btn-danger">HAPUS</a> -->
-                    </td>
-                    </tr>
-                  <?php } ?>
-              </tbody>
-            </table>
+            <!-- </div> -->
           </div>
           <!-- </div> -->
-          <!-- </div> -->
-        </div>
-        <!-- </div> -->
-      <?php
+        <?php
       }
-      ?>
+        ?>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Message:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
       </div>
     </div>
+
 
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script> -->
     <script src="./asset/js/bootstrap.min.js"></script>
@@ -222,6 +270,7 @@ if (empty($_SESSION['admin'])) {
         $('#myTable').DataTable();
       });
     </script>
+
   </body>
 
   </html>

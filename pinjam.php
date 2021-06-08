@@ -4,8 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <title>Form Pijam</title>
+  <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./asset/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>SIsKO 1.0.10</title>
+  <title>Form Pinjam</title>
 </head>
 
 <body>
@@ -34,28 +37,46 @@
               </div>
             </div>
           </div>
-          <!-- </div> -->
           <div class="form-group">
             <label for="tgl_pulang" class="form-label">Nama Lengkap</label>
             <input type="text" name="user_id" placeholder="Masukkan Nama Peminjam" class="form-control">
           </div>
-
           <div class="form-group">
             <label>alamat tujuan</label>
             <textarea class="form-control" name="alamat_tujuan" placeholder="Masukkan Alamat Tujuan"></textarea>
           </div>
           <hr size="4px">
-
-          <button type="submit" class="btn btn-success">SIMPAN</button>
-          <button type="reset" class="btn btn-warning">RESET</button>
-
         </form>
+        <button type="submit" class="btn btn-success">SIMPAN</button>
+        <button type="reset" class="btn btn-warning">RESET</button>
+
       </div>
-      <!-- </div>
-      </div> -->
     </div>
+
+    <!-- Mulai Carousel Pilihan Kendaraan-->
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/asset/img/background.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+      </div>
+    </div>
+    <!-- Akhir Carousel Pilihan Kendaraan -->
   </div>
-  <script src="./js/bootstrap.min.js"></script>
+  <script src="./asset/js/bootstrap.min.js"></script>
+  <!-- <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> -->
+  <!-- <script> -->
+    $(document).ready(function() {
+      $('#myTable').DataTable();
+    });
+  <!-- </script> -->
 </body>
 
 </html>
