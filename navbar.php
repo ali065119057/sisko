@@ -6,7 +6,7 @@ if (!empty($_SESSION['admin'])) {
   <nav class="navbar navbar-expand-lg navbar-light bg-light color: rgb(100 103 142 / 90%)">
     <div class="container-fluid">
       <a class="navbar-brand" href="admin.php">
-        <label style="color: blueviolet;font-size:30px;font-family: monospace;/* align-self: stretch; */">SIsKO 1.0.10</label>
+        <label style="color: #0d6efd;font-size:30px;font-family: monospace;/* align-self: stretch; */">SIsKO 1.0.10</label>
       </a>
 
       <div class="nav-item dropdown">
