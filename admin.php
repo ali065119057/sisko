@@ -81,7 +81,7 @@ if (empty($_SESSION['admin'])) {
                   <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">drive_eta</span></h1>
                 </a>
               </div>
-              <h6 class="text-center"> Pinjam Kendaraan </h6>
+              <h6 class="text-center"> PINJAM KENDARAAN </h6>
             </div>
           </div>
           <?php
@@ -112,7 +112,7 @@ if (empty($_SESSION['admin'])) {
             <div class="col">
               <div class="card text-dark bg-white mb-3 h-85">
                 <div class="card-body">
-                  <a href="?page=rprt">
+                  <a href="?page=drv">
                     <h1 class="text-center card-title"><span class="material-icons" style="font-size: 64px">report</span></h1>
                   </a>
                 </div>
@@ -130,10 +130,10 @@ if (empty($_SESSION['admin'])) {
         <hr size="4px">
         <div class="row">
           <!-- <div class="card "> -->
-          <div class="card-header text-center">
+          <div class="card-header text-left">
             <!-- <div class="card-body"> -->
             <!-- <div class="col"> -->
-            <h6> Tabel Riwayat Perjalanan</h6>
+            <h6 class="strong"> RIWAYAT PENGGUNAAN KENDARAAN OPERASIONAL</h6>
             <div class="table-responsive">
               <table class="table table-succes table-stripped table-bordered responsive-table" id="myTable">
                 <thead>
@@ -156,12 +156,12 @@ if (empty($_SESSION['admin'])) {
                   // echo $_SESSION['admin'];
                   if ($_SESSION['admin'] <= 2) {
                     $sql = "SELECT * FROM perjalanan \n"
-
                       . "JOIN tbl_user ON perjalanan.id_user=tbl_user.id_user \n"
-
-                      . "JOIN pengemudi ON perjalanan.id_pengemudi = pengemudi.id_pengemudi";
+                      . "JOIN pengemudi ON perjalanan.id_pengemudi = pengemudi.id_pengemudi \n"
+                      . "ORDER BY `perjalanan`.`tgl_berangkat` DESC";
                   } else {
-                    $sql = "SELECT * FROM perjalanan JOIN tbl_user USING (id_user) JOIN pengemudi USING (id_pengemudi) WHERE id_user =$_SESSION[id_user]";
+                    $sql = "SELECT * FROM perjalanan JOIN tbl_user USING (id_user) JOIN pengemudi USING (id_pengemudi)  \n"
+                      . " WHERE id_user =$_SESSION[id_user] ORDER BY `perjalanan`.`tgl_berangkat` DESC";
 
                     // $sql = "SELECT * FROM perjalanan WHERE id_user=$_SESSION[id_user]";
                   };
@@ -172,7 +172,7 @@ if (empty($_SESSION['admin'])) {
                     <?php if ($row['km_awal'] > $row['km_akhir']) { ?>
                       <tr class="table-danger">
                       <?php } else { ?>
-                      <tr class="table-white">
+                      <tr class="table-success">
                       <?php } ?>
 
                       <td><?php echo $no++ ?></td>
@@ -183,7 +183,7 @@ if (empty($_SESSION['admin'])) {
                       <td><?php echo $row['alamat_tujuan'] ?></td>
                       <td><?php echo $row['km_awal'] ?></td>
                       <td><?php echo $row['km_akhir'] ?></td>
-                      <td class="text-center">
+                      <td class="text-left">
                         <?php if ($row['km_awal'] > $row['km_akhir']) { ?>
                           <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <span class="material-icons two-tone">
@@ -200,13 +200,13 @@ if (empty($_SESSION['admin'])) {
                             Persetujuan
                           </button>
 
-                          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          <!-- <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <span class="material-icons two-tone">
                               assignment_return
                             </span><br>
-                            Text
+                            Catatan
                           </button>
-                        <?php } ?>
+                        <?php } ?> -->
 
                       </td>
                       </tr>
@@ -235,11 +235,11 @@ if (empty($_SESSION['admin'])) {
           <div class="modal-body">
             <form>
               <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                <label for="recipient-name" class="col-form-label">KM AKHIR:</label>
                 <input type="text" class="form-control" id="recipient-name">
               </div>
               <div class="mb-3">
-                <label for="message-text" class="col-form-label">Message:</label>
+                <label for="message-text" class="col-form-label">CATATAN:</label>
                 <textarea class="form-control" id="message-text"></textarea>
               </div>
             </form>
