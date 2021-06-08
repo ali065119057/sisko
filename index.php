@@ -95,7 +95,7 @@ require_once 'koneksi.php';
                                     <?php
                                     if (isset($_SESSION['errLog'])) {
                                         $errLog = $_SESSION['errLog'];
-                                        echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>LOGIN GAGAL!</strong></div>
+                                        echo '<div id= "alert-message" border-radius="10px" color="#f44336"><div class="center"><i class="material-icons">error_outline</i> <strong>LOGIN GAGAL!</strong></div>
                                     ' . $errLog . '</div>';
                                         unset($_SESSION['errLog']);
                                     }
